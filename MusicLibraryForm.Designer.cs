@@ -48,12 +48,14 @@
             this.columnHeaderRecordDate,
             this.columnHeaderCategory});
             this.MusicLibraryListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MusicLibraryListView.GridLines = true;
             this.MusicLibraryListView.Location = new System.Drawing.Point(0, 24);
             this.MusicLibraryListView.Name = "MusicLibraryListView";
             this.MusicLibraryListView.ShowItemToolTips = true;
             this.MusicLibraryListView.Size = new System.Drawing.Size(800, 426);
             this.MusicLibraryListView.TabIndex = 0;
             this.MusicLibraryListView.UseCompatibleStateImageBehavior = false;
+            this.MusicLibraryListView.View = System.Windows.Forms.View.Details;
             this.MusicLibraryListView.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
             // 
             // columnHeaderTitle
@@ -71,7 +73,6 @@
             // columnHeaderCategory
             // 
             this.columnHeaderCategory.Text = "Category";
-            this.columnHeaderCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // menuStrip1
             // 
@@ -114,6 +115,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MusicLibraryForm";
             this.Text = "MusicLibraryForm";
+            this.Load += new System.EventHandler(this.MusicLibraryForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

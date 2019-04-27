@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace pik_biblioteka_muzyczna {
-    class MusicLibraryDocument {
+    public class MusicLibraryDocument {
 
         public List<Song> songs = new List<Song>();
 

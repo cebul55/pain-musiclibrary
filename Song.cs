@@ -26,7 +26,7 @@ namespace pik_biblioteka_muzyczna{
             set;
         }
 
-        Song(string title, string author, DateTime recordDate, string Category) {
+        public Song(string title, string author, DateTime recordDate, string Category) {
             this.Title = title;
             this.Author = author;
             this.RecordDate = recordDate;
