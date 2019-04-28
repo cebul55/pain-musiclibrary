@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pik-biblioteka-muzyczna", "pik-biblioteka-muzyczna.csproj", "{710D37BA-4B15-459C-8FB6-AAE12E5CC9C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pain-music-library", "pain-music-library.csproj", "{710D37BA-4B15-459C-8FB6-AAE12E5CC9C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
