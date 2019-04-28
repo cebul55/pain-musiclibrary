@@ -25,13 +25,24 @@ namespace pik_biblioteka_muzyczna
             musicLibraryDocument.UpdateSongEvent += musicLibraryDocument_UpdateSongEvent;
             musicLibraryDocument.DeleteSongEvent += musicLibraryDocument_DeleteSongEvent;
             setToolStripStatusLabelMusicLibraryForm_Text();
+
+            setUpColumnWidth();
+        }
+
+        protected override void OnInvalidated(InvalidateEventArgs e) {
+            setUpColumnWidth();
+            setToolStripStatusLabelMusicLibraryForm_Text();
+        }
+
+        private void setUpColumnWidth() {
             //autosize columns widht
             MusicLibraryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             MusicLibraryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
         }
 
         private void setToolStripStatusLabelMusicLibraryForm_Text() {
-            toolStripStatusLabelMusicLibraryForm.Text = ("Number of items: " + musicLibraryDocument.songs.Count + ".");
+            toolStripStatusLabelMusicLibraryForm.Text = ("Number of items: " + MusicLibraryListView.Items.Count + ".");
         }
 
         private void musicLibraryDocument_AddSongEvent(Song song) {
@@ -39,18 +50,20 @@ namespace pik_biblioteka_muzyczna
             item.Tag = song;
             UpdateItem(item);
             MusicLibraryListView.Items.Add(item);
-            setToolStripStatusLabelMusicLibraryForm_Text();
+            Invalidate();
+            //this.setUpColumnWidth();
         }
 
-        private void musicLibraryDocument_UpdateSongEvent(Song song) {
+            private void musicLibraryDocument_UpdateSongEvent(Song song) {
             UpdateItems();
+            Invalidate();
+            //this.setUpColumnWidth();
         }
 
         private void musicLibraryDocument_DeleteSongEvent(Song song) {
             foreach(ListViewItem item in MusicLibraryListView.Items) {
                 if(ReferenceEquals((Song) item.Tag, song)) {
                     MusicLibraryListView.Items.Remove(item);
-                    //UpdateItems();
                     return;
                 }
             }
@@ -83,13 +96,7 @@ namespace pik_biblioteka_muzyczna
                 musicLibraryDocument.AddSong(newSong);
             }
         }
-        private void AddToolStripMenuItem1_Click(object sender, EventArgs e) {
-            SongForm songForm = new SongForm(null, musicLibraryDocument.songs);
-            if (songForm.ShowDialog() == DialogResult.OK) {
-                Song newSong = new Song(songForm.SongTitle, songForm.SongAuthor, songForm.SongDateRecorded, songForm.SongCategory);
-                musicLibraryDocument.AddSong(newSong);
-            }
-        }
+
         private void UpdateToolStripMenuItem_Click(object sender, EventArgs e) {
             if (MusicLibraryListView.SelectedItems.Count == 1) {
                 Song song = (Song)MusicLibraryListView.SelectedItems[0].Tag;
@@ -113,5 +120,34 @@ namespace pik_biblioteka_muzyczna
                 setToolStripStatusLabelMusicLibraryForm_Text();
             }
         }
+
+        private void FilterToolStripMenuItem_Click(object sender, EventArgs e) {
+            FilterForm filterForm = new FilterForm();
+            if(filterForm.ShowDialog() == DialogResult.OK) {
+                DateTime minDate = filterForm.MinDateValue;
+                DateTime maxDate = filterForm.MaxDateValue;
+                DateFilterItems(minDate, maxDate);
+                Invalidate();
+            }
+        }
+        private void ClearFiltersToolStripMenuItem_Click(object sender, EventArgs e) {
+            UpdateItems();
+            Invalidate();
+        }
+        private void DateFilterItems(DateTime minDate, DateTime maxDate) {
+            MusicLibraryListView.Items.Clear();
+            foreach (Song s in musicLibraryDocument.songs) {
+                Console.WriteLine(minDate + " " + maxDate + " " + s.RecordDate);
+                if (s.RecordDate >= minDate && s.RecordDate <= maxDate) {
+                    ListViewItem item = new ListViewItem();
+                    item.Tag = s;
+                    UpdateItem(item);
+                    MusicLibraryListView.Items.Add(item);
+                }
+            }
+        }
+
+
+
     }
 }

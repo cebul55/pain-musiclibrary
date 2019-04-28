@@ -18,7 +18,7 @@ namespace pik_biblioteka_muzyczna {
         }
 
         public DateTime SongDateRecorded {
-            get { return datePickerSongForm.Value; }
+            get { return datePickerSongForm.Value.Date; }
         }
 
         public string SongCategory {
