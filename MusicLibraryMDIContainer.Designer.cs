@@ -41,7 +41,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.MdiWindowListItem = this.mDIToolStripMenuItem;
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1064, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -57,7 +57,7 @@
             // musicLibraryFormToolStripMenuItem
             // 
             this.musicLibraryFormToolStripMenuItem.Name = "musicLibraryFormToolStripMenuItem";
-            this.musicLibraryFormToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.musicLibraryFormToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.musicLibraryFormToolStripMenuItem.Text = "MusicLibraryForm";
             this.musicLibraryFormToolStripMenuItem.Click += new System.EventHandler(this.MusicLibraryFormToolStripMenuItem_Click);
             // 
@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1064, 610);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.Name = "MusicLibraryMDIContainer";

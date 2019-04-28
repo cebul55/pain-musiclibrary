@@ -10,8 +10,7 @@ using System.Windows.Forms;
 
 namespace pik_biblioteka_muzyczna
 {
-    public partial class MusicLibraryForm : Form
-    {
+    public partial class MusicLibraryForm : Form {
         private MusicLibraryDocument musicLibraryDocument {
             get;
             set;
@@ -23,6 +22,7 @@ namespace pik_biblioteka_muzyczna
         private void MusicLibraryForm_Load(object sender, EventArgs e) {
             UpdateItems();
             musicLibraryDocument.AddSongEvent += musicLibraryDocument_AddSongEvent;
+            musicLibraryDocument.UpdateSongEvent += musicLibraryDocument_UpdateSongEvent;
             MusicLibraryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             MusicLibraryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -34,9 +34,13 @@ namespace pik_biblioteka_muzyczna
             MusicLibraryListView.Items.Add(item);
         }
 
+        private void musicLibraryDocument_UpdateSongEvent(Song song) {
+            UpdateItems();
+        }
+
         private void UpdateItems() {
             MusicLibraryListView.Items.Clear();
-            foreach(Song s in musicLibraryDocument.songs) {
+            foreach (Song s in musicLibraryDocument.songs) {
                 ListViewItem item = new ListViewItem();
                 item.Tag = s;
                 UpdateItem(item);
@@ -53,19 +57,32 @@ namespace pik_biblioteka_muzyczna
             item.SubItems[2].Text = song.RecordDate.ToShortDateString();
             item.SubItems[3].Text = song.Category;
         }
-        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
 
         private void AddToolStripMenuItem_Click(object sender, EventArgs e) {
-            SongForm songForm = new SongForm(null,musicLibraryDocument.songs);
-            if(songForm.ShowDialog() == DialogResult.OK) {
+            SongForm songForm = new SongForm(null, musicLibraryDocument.songs);
+            if (songForm.ShowDialog() == DialogResult.OK) {
                 Song newSong = new Song(songForm.SongTitle, songForm.SongAuthor, songForm.SongDateRecorded, songForm.SongCategory);
                 musicLibraryDocument.AddSong(newSong);
             }
         }
 
+        private void UpdateToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (MusicLibraryListView.SelectedItems.Count == 1) {
+                Song song = (Song)MusicLibraryListView.SelectedItems[0].Tag;
+                Song oldSong = (Song)MusicLibraryListView.SelectedItems[0].Tag;
+                SongForm form = new SongForm(song, musicLibraryDocument.songs);
+                if (form.ShowDialog() == DialogResult.OK) {
+                    song.Title = form.SongTitle;
+                    song.Author = form.SongAuthor;
+                    song.RecordDate = form.SongDateRecorded;
+                    song.Category = form.SongCategory;
 
+                    musicLibraryDocument.UpdateSong(oldSong, song);
+                }
+            }
+        }
     }
 }

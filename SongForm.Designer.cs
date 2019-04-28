@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutSongForm = new System.Windows.Forms.TableLayoutPanel();
             this.authorLabelSongForm = new System.Windows.Forms.Label();
             this.RecordDateLabelSongForm = new System.Windows.Forms.Label();
@@ -34,7 +35,11 @@
             this.AuthorTextBoxSongForm = new System.Windows.Forms.TextBox();
             this.TitleTextBoxSongForm = new System.Windows.Forms.TextBox();
             this.AddButtonStudentForm = new System.Windows.Forms.Button();
+            this.errorProviderTitleSongForm = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderDateSongForm = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutSongForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTitleSongForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateSongForm)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutSongForm
@@ -123,7 +128,6 @@
             this.titleLabelSongForm.TabIndex = 2;
             this.titleLabelSongForm.Text = "Title";
             this.titleLabelSongForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.titleLabelSongForm.Click += new System.EventHandler(this.TitleLabelSongForm_Click);
             // 
             // cancelButtonSongForm
             // 
@@ -150,7 +154,8 @@
             this.datePickerSongForm.Size = new System.Drawing.Size(200, 29);
             this.datePickerSongForm.TabIndex = 6;
             this.datePickerSongForm.Value = new System.DateTime(2019, 4, 27, 23, 29, 53, 0);
-            this.datePickerSongForm.ValueChanged += new System.EventHandler(this.DatePickerSongForm_ValueChanged);
+            this.datePickerSongForm.Validating += new System.ComponentModel.CancelEventHandler(this.datePickerSongForm_Validating);
+            this.datePickerSongForm.Validated += new System.EventHandler(this.datePickerSongForm_Validated);
             // 
             // comboCategorySongForm
             // 
@@ -182,6 +187,8 @@
             this.TitleTextBoxSongForm.Size = new System.Drawing.Size(200, 29);
             this.TitleTextBoxSongForm.TabIndex = 9;
             this.TitleTextBoxSongForm.TextChanged += new System.EventHandler(this.TitleTextBoxSongForm_TextChanged);
+            this.TitleTextBoxSongForm.Validating += new System.ComponentModel.CancelEventHandler(this.TitleTextBoxSongForm_Validating);
+            this.TitleTextBoxSongForm.Validated += new System.EventHandler(this.TitleTextBoxSongForm_Validated);
             // 
             // AddButtonStudentForm
             // 
@@ -198,6 +205,14 @@
             this.AddButtonStudentForm.UseVisualStyleBackColor = false;
             this.AddButtonStudentForm.Click += new System.EventHandler(this.AddButtonStudentForm_Click);
             // 
+            // errorProviderTitleSongForm
+            // 
+            this.errorProviderTitleSongForm.ContainerControl = this;
+            // 
+            // errorProviderDateSongForm
+            // 
+            this.errorProviderDateSongForm.ContainerControl = this;
+            // 
             // SongForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,6 +225,8 @@
             this.Load += new System.EventHandler(this.SongForm_Load);
             this.tableLayoutSongForm.ResumeLayout(false);
             this.tableLayoutSongForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTitleSongForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateSongForm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +245,7 @@
         private System.Windows.Forms.TextBox AuthorTextBoxSongForm;
         private System.Windows.Forms.TextBox TitleTextBoxSongForm;
         private System.Windows.Forms.Button AddButtonStudentForm;
+        private System.Windows.Forms.ErrorProvider errorProviderTitleSongForm;
+        private System.Windows.Forms.ErrorProvider errorProviderDateSongForm;
     }
 }
