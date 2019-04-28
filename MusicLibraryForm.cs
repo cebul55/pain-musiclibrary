@@ -24,8 +24,14 @@ namespace pik_biblioteka_muzyczna
             musicLibraryDocument.AddSongEvent += musicLibraryDocument_AddSongEvent;
             musicLibraryDocument.UpdateSongEvent += musicLibraryDocument_UpdateSongEvent;
             musicLibraryDocument.DeleteSongEvent += musicLibraryDocument_DeleteSongEvent;
+            setToolStripStatusLabelMusicLibraryForm_Text();
+            //autosize columns widht
             MusicLibraryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             MusicLibraryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void setToolStripStatusLabelMusicLibraryForm_Text() {
+            toolStripStatusLabelMusicLibraryForm.Text = ("Number of items: " + musicLibraryDocument.songs.Count + ".");
         }
 
         private void musicLibraryDocument_AddSongEvent(Song song) {
@@ -33,6 +39,7 @@ namespace pik_biblioteka_muzyczna
             item.Tag = song;
             UpdateItem(item);
             MusicLibraryListView.Items.Add(item);
+            setToolStripStatusLabelMusicLibraryForm_Text();
         }
 
         private void musicLibraryDocument_UpdateSongEvent(Song song) {
@@ -43,10 +50,10 @@ namespace pik_biblioteka_muzyczna
             foreach(ListViewItem item in MusicLibraryListView.Items) {
                 if(ReferenceEquals((Song) item.Tag, song)) {
                     MusicLibraryListView.Items.Remove(item);
+                    //UpdateItems();
                     return;
                 }
             }
-            UpdateItems();
         }
 
         private void UpdateItems() {
@@ -67,9 +74,6 @@ namespace pik_biblioteka_muzyczna
             item.SubItems[1].Text = song.Author;
             item.SubItems[2].Text = song.RecordDate.ToShortDateString();
             item.SubItems[3].Text = song.Category;
-        }
-        private void ListView1_SelectedIndexChanged(object sender, EventArgs e) {
-
         }
 
         private void AddToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -106,7 +110,7 @@ namespace pik_biblioteka_muzyczna
             if(MusicLibraryListView.SelectedItems.Count == 1) {
                 Song song = (Song)MusicLibraryListView.SelectedItems[0].Tag;
                 musicLibraryDocument.DeleteSong(song);
-                //todo implementing deletions !
+                setToolStripStatusLabelMusicLibraryForm_Text();
             }
         }
     }
