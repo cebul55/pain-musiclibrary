@@ -56,6 +56,9 @@ namespace pik_biblioteka_muzyczna {
             try {
                 string title = (string)TitleTextBoxSongForm.Text;
                 string author = (string)AuthorTextBoxSongForm.Text;
+
+                if (title.Equals(""))
+                    throw new Exception("Title must not be empty.");
                 foreach ( Song s in songs) {
                     if (s.Title == title && s.Author == author && !ReferenceEquals(s, song))
                         throw new Exception("Song wiht given Title and Author already exists in library.");
@@ -63,12 +66,28 @@ namespace pik_biblioteka_muzyczna {
             }
             catch(Exception exception) {
                 e.Cancel = true;
-                errorProviderTitleSongForm.SetError(TitleTextBoxSongForm, exception.Message);
+                errorProviderSongForm.SetError(TitleTextBoxSongForm, exception.Message);
             }
         }
 
         private void TitleTextBoxSongForm_Validated (object sender, EventArgs e) {
-            errorProviderTitleSongForm.SetError(titleLabelSongForm, "");
+            errorProviderSongForm.SetError(titleLabelSongForm, "");
+        }
+
+        private void AuthorTextBoxSongForm_Validating(object sender, CancelEventArgs e) {
+            try {
+                string author = (string)AuthorTextBoxSongForm.Text;
+                if (author.Equals(""))
+                    throw new Exception("Author must not be empty.");
+            }
+            catch(Exception exception) {
+                e.Cancel = true;
+                errorProviderSongForm.SetError(AuthorTextBoxSongForm, exception.Message);
+            }
+        }
+
+        private void AuthorTextBoxSongForm_Validated(object sender, EventArgs e) {
+            errorProviderSongForm.SetError(AuthorTextBoxSongForm, "");
         }
 
         private void datePickerSongForm_Validating(object sender, CancelEventArgs e) {
@@ -88,14 +107,7 @@ namespace pik_biblioteka_muzyczna {
             errorProviderDateSongForm.SetError(datePickerSongForm, "");
         }
 
-        private void ComboCategorySongForm_SelectedIndexChanged(object sender, EventArgs e) {
 
-        }
-
-
-        private void TitleTextBoxSongForm_TextChanged(object sender, EventArgs e) {
-
-        }
 
 
     }

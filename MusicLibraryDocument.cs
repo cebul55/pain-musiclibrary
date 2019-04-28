@@ -11,6 +11,7 @@ namespace pik_biblioteka_muzyczna {
 
         public event Action<Song> AddSongEvent;
         public event Action<Song> UpdateSongEvent;
+        public event Action<Song> DeleteSongEvent;
 
         public void AddSong(Song song) {
             songs.Add(song);
@@ -34,8 +35,13 @@ namespace pik_biblioteka_muzyczna {
         }
 
         public void DeleteSong(Song song) {
-            //todo implement deleting
-            throw new NotImplementedException();
+            foreach(Song s in songs) {
+                if(ReferenceEquals(s, song)) {
+                    DeleteSongEvent?.Invoke(s);
+                    songs.Remove(s);
+                    return;
+                }
+            }
         }
     }
 }

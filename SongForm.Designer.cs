@@ -35,10 +35,10 @@
             this.AuthorTextBoxSongForm = new System.Windows.Forms.TextBox();
             this.TitleTextBoxSongForm = new System.Windows.Forms.TextBox();
             this.AddButtonStudentForm = new System.Windows.Forms.Button();
-            this.errorProviderTitleSongForm = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderSongForm = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderDateSongForm = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutSongForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTitleSongForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSongForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateSongForm)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,7 +167,6 @@
             this.comboCategorySongForm.Name = "comboCategorySongForm";
             this.comboCategorySongForm.Size = new System.Drawing.Size(201, 32);
             this.comboCategorySongForm.TabIndex = 7;
-            this.comboCategorySongForm.SelectedIndexChanged += new System.EventHandler(this.ComboCategorySongForm_SelectedIndexChanged);
             // 
             // AuthorTextBoxSongForm
             // 
@@ -177,6 +176,8 @@
             this.AuthorTextBoxSongForm.Name = "AuthorTextBoxSongForm";
             this.AuthorTextBoxSongForm.Size = new System.Drawing.Size(200, 29);
             this.AuthorTextBoxSongForm.TabIndex = 8;
+            this.AuthorTextBoxSongForm.Validating += new System.ComponentModel.CancelEventHandler(this.AuthorTextBoxSongForm_Validating);
+            this.AuthorTextBoxSongForm.Validated += new System.EventHandler(this.AuthorTextBoxSongForm_Validated);
             // 
             // TitleTextBoxSongForm
             // 
@@ -186,7 +187,6 @@
             this.TitleTextBoxSongForm.Name = "TitleTextBoxSongForm";
             this.TitleTextBoxSongForm.Size = new System.Drawing.Size(200, 29);
             this.TitleTextBoxSongForm.TabIndex = 9;
-            this.TitleTextBoxSongForm.TextChanged += new System.EventHandler(this.TitleTextBoxSongForm_TextChanged);
             this.TitleTextBoxSongForm.Validating += new System.ComponentModel.CancelEventHandler(this.TitleTextBoxSongForm_Validating);
             this.TitleTextBoxSongForm.Validated += new System.EventHandler(this.TitleTextBoxSongForm_Validated);
             // 
@@ -205,9 +205,9 @@
             this.AddButtonStudentForm.UseVisualStyleBackColor = false;
             this.AddButtonStudentForm.Click += new System.EventHandler(this.AddButtonStudentForm_Click);
             // 
-            // errorProviderTitleSongForm
+            // errorProviderSongForm
             // 
-            this.errorProviderTitleSongForm.ContainerControl = this;
+            this.errorProviderSongForm.ContainerControl = this;
             // 
             // errorProviderDateSongForm
             // 
@@ -225,7 +225,7 @@
             this.Load += new System.EventHandler(this.SongForm_Load);
             this.tableLayoutSongForm.ResumeLayout(false);
             this.tableLayoutSongForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTitleSongForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSongForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateSongForm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -245,7 +245,7 @@
         private System.Windows.Forms.TextBox AuthorTextBoxSongForm;
         private System.Windows.Forms.TextBox TitleTextBoxSongForm;
         private System.Windows.Forms.Button AddButtonStudentForm;
-        private System.Windows.Forms.ErrorProvider errorProviderTitleSongForm;
+        private System.Windows.Forms.ErrorProvider errorProviderSongForm;
         private System.Windows.Forms.ErrorProvider errorProviderDateSongForm;
     }
 }
