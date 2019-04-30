@@ -92,7 +92,7 @@ namespace pik_biblioteka_muzyczna {
 
         private void datePickerSongForm_Validating(object sender, CancelEventArgs e) {
             try {
-                DateTime date = System.DateTime.Now;
+                DateTime date = System.DateTime.Now.Date;
                 DateTime insertedDate = datePickerSongForm.Value;
                 if (insertedDate > date)
                     throw new Exception("Date cannot be grater than today's date.");
@@ -112,3 +112,7 @@ namespace pik_biblioteka_muzyczna {
 
     }
 }
+//todo  - lepsze usuwanie wierszy ( można kilka naraz, usuwanie pojedynczych itemów
+//      - przy filtrowaniu i dodaniu studenta nie wyświetlamy jeżeli nie pasuje do filtra
+//      - kontrolka użytkownika ! dodać metadane ( właściwość typ ma być wyswietlana w jakieść kategorii properties, dostarczenie klasy, która będzie w stanie edytować własciwości )
+//      - odrysowywanie kontrolki generowanie wiadomości wmPaint.
