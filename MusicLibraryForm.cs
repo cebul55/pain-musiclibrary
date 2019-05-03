@@ -15,9 +15,21 @@ namespace pik_biblioteka_muzyczna
             get;
             set;
         }
+
+        private DateTime minFilterDate {
+            get;
+            set;
+        }
+
+        private DateTime maxFilterDate {
+            get;
+            set;
+        }
+
         public MusicLibraryForm(MusicLibraryDocument document) {
             InitializeComponent();
             this.musicLibraryDocument = document;
+            setUpDefaultFilter();
         }
         private void MusicLibraryForm_Load(object sender, EventArgs e) {
             UpdateItems();
@@ -25,6 +37,7 @@ namespace pik_biblioteka_muzyczna
             musicLibraryDocument.UpdateSongEvent += musicLibraryDocument_UpdateSongEvent;
             musicLibraryDocument.DeleteSongEvent += musicLibraryDocument_DeleteSongEvent;
             setToolStripStatusLabelMusicLibraryForm_Text();
+            setFilterToolStripLabelMusicLibraryForm_Text();
 
             setUpColumnWidth();
         }
@@ -32,6 +45,7 @@ namespace pik_biblioteka_muzyczna
         protected override void OnInvalidated(InvalidateEventArgs e) {
             setUpColumnWidth();
             setToolStripStatusLabelMusicLibraryForm_Text();
+            setFilterToolStripLabelMusicLibraryForm_Text();
         }
 
         private void setUpColumnWidth() {
@@ -41,17 +55,34 @@ namespace pik_biblioteka_muzyczna
 
         }
 
+        private void setUpDefaultFilter() {
+            this.minFilterDate = DateTime.MinValue.Date;
+            this.maxFilterDate = DateTime.MaxValue.Date;
+        }
+
         private void setToolStripStatusLabelMusicLibraryForm_Text() {
             toolStripStatusLabelMusicLibraryForm.Text = ("Number of items: " + MusicLibraryListView.Items.Count + ".");
         }
 
+        private void setFilterToolStripLabelMusicLibraryForm_Text() {
+            if(minFilterDate == DateTime.MinValue.Date && maxFilterDate == DateTime.MaxValue.Date) {
+                FilterStatusLabel.Text = "All items visible.";
+            }
+            else {
+                FilterStatusLabel.Text = "Filtered by Record Date from " + minFilterDate.ToShortDateString() + " to " + maxFilterDate.ToShortDateString() + ".";
+            }
+
+        }
+
         private void musicLibraryDocument_AddSongEvent(Song song) {
-            ListViewItem item = new ListViewItem();
-            item.Tag = song;
-            UpdateItem(item);
-            MusicLibraryListView.Items.Add(item);
-            Invalidate();
-            //this.setUpColumnWidth();
+            if (CheckIfIsFiltered(song)) {
+                ListViewItem item = new ListViewItem();
+                item.Tag = song;
+                UpdateItem(item);
+                MusicLibraryListView.Items.Add(item);
+                Invalidate();
+                //this.setUpColumnWidth();
+            }
         }
 
             private void musicLibraryDocument_UpdateSongEvent(Song song) {
@@ -69,13 +100,19 @@ namespace pik_biblioteka_muzyczna
             }
         }
 
+        private bool CheckIfIsFiltered(Song song) {
+            return (song.RecordDate >= minFilterDate && song.RecordDate <= maxFilterDate);
+        }
+
         private void UpdateItems() {
             MusicLibraryListView.Items.Clear();
             foreach (Song s in musicLibraryDocument.songs) {
-                ListViewItem item = new ListViewItem();
-                item.Tag = s;
-                UpdateItem(item);
-                MusicLibraryListView.Items.Add(item);
+                if (CheckIfIsFiltered(s)) {
+                    ListViewItem item = new ListViewItem();
+                    item.Tag = s;
+                    UpdateItem(item);
+                    MusicLibraryListView.Items.Add(item);
+                }
             }
         }
 
@@ -124,13 +161,14 @@ namespace pik_biblioteka_muzyczna
         private void FilterToolStripMenuItem_Click(object sender, EventArgs e) {
             FilterForm filterForm = new FilterForm();
             if(filterForm.ShowDialog() == DialogResult.OK) {
-                DateTime minDate = filterForm.MinDateValue;
-                DateTime maxDate = filterForm.MaxDateValue;
-                DateFilterItems(minDate, maxDate);
+                minFilterDate = filterForm.MinDateValue;
+                maxFilterDate = filterForm.MaxDateValue;
+                DateFilterItems(minFilterDate, maxFilterDate);
                 Invalidate();
             }
         }
         private void ClearFiltersToolStripMenuItem_Click(object sender, EventArgs e) {
+            setUpDefaultFilter();
             UpdateItems();
             Invalidate();
         }

@@ -36,6 +36,7 @@
             this.columnHeaderCategory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStripMusicLibraryForm = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearFiltersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.addToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,10 +44,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelMusicLibraryForm = new System.Windows.Forms.ToolStripStatusLabel();
-            this.clearFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearFiltersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.FilterStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStripMusicLibraryForm.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -69,7 +70,7 @@
             this.MusicLibraryListView.MultiSelect = false;
             this.MusicLibraryListView.Name = "MusicLibraryListView";
             this.MusicLibraryListView.ShowItemToolTips = true;
-            this.MusicLibraryListView.Size = new System.Drawing.Size(800, 426);
+            this.MusicLibraryListView.Size = new System.Drawing.Size(800, 402);
             this.MusicLibraryListView.TabIndex = 0;
             this.MusicLibraryListView.UseCompatibleStateImageBehavior = false;
             this.MusicLibraryListView.View = System.Windows.Forms.View.Details;
@@ -100,7 +101,7 @@
             this.updateToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.contextMenuStripMusicLibraryForm.Name = "contextMenuStripMusicLibraryForm";
-            this.contextMenuStripMusicLibraryForm.Size = new System.Drawing.Size(181, 142);
+            this.contextMenuStripMusicLibraryForm.Size = new System.Drawing.Size(136, 120);
             // 
             // filterToolStripMenuItem
             // 
@@ -108,6 +109,13 @@
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.filterToolStripMenuItem.Text = "Filter";
             this.filterToolStripMenuItem.Click += new System.EventHandler(this.FilterToolStripMenuItem_Click);
+            // 
+            // clearFiltersToolStripMenuItem1
+            // 
+            this.clearFiltersToolStripMenuItem1.Name = "clearFiltersToolStripMenuItem1";
+            this.clearFiltersToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.clearFiltersToolStripMenuItem1.Text = "Clear Filters";
+            this.clearFiltersToolStripMenuItem1.Click += new System.EventHandler(this.ClearFiltersToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -161,23 +169,6 @@
             this.filterToolStripMenuItem1.Text = "Filter";
             this.filterToolStripMenuItem1.Click += new System.EventHandler(this.FilterToolStripMenuItem_Click);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabelMusicLibraryForm});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabelMusicLibraryForm
-            // 
-            this.toolStripStatusLabelMusicLibraryForm.Name = "toolStripStatusLabelMusicLibraryForm";
-            this.toolStripStatusLabelMusicLibraryForm.Size = new System.Drawing.Size(70, 17);
-            this.toolStripStatusLabelMusicLibraryForm.Text = "Status Label";
-            this.toolStripStatusLabelMusicLibraryForm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // clearFiltersToolStripMenuItem
             // 
             this.clearFiltersToolStripMenuItem.Name = "clearFiltersToolStripMenuItem";
@@ -185,21 +176,42 @@
             this.clearFiltersToolStripMenuItem.Text = "Clear Filters";
             this.clearFiltersToolStripMenuItem.Click += new System.EventHandler(this.ClearFiltersToolStripMenuItem_Click);
             // 
-            // clearFiltersToolStripMenuItem1
+            // statusStrip1
             // 
-            this.clearFiltersToolStripMenuItem1.Name = "clearFiltersToolStripMenuItem1";
-            this.clearFiltersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.clearFiltersToolStripMenuItem1.Text = "Clear Filters";
-            this.clearFiltersToolStripMenuItem1.Click += new System.EventHandler(this.ClearFiltersToolStripMenuItem_Click);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelMusicLibraryForm,
+            this.FilterStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 426);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.statusStrip1.Size = new System.Drawing.Size(800, 24);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabelMusicLibraryForm
+            // 
+            this.toolStripStatusLabelMusicLibraryForm.Name = "toolStripStatusLabelMusicLibraryForm";
+            this.toolStripStatusLabelMusicLibraryForm.Size = new System.Drawing.Size(70, 19);
+            this.toolStripStatusLabelMusicLibraryForm.Text = "Status Label";
+            this.toolStripStatusLabelMusicLibraryForm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // FilterStatusLabel
+            // 
+            this.FilterStatusLabel.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.FilterStatusLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.FilterStatusLabel.Name = "FilterStatusLabel";
+            this.FilterStatusLabel.Size = new System.Drawing.Size(68, 19);
+            this.FilterStatusLabel.Text = "Filter Label";
+            this.FilterStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MusicLibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.MusicLibraryListView);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.statusStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MusicLibraryForm";
             this.Text = "MusicLibraryForm";
@@ -234,5 +246,6 @@
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem clearFiltersToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem clearFiltersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel FilterStatusLabel;
     }
 }
