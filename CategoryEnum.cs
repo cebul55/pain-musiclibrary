@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace pik_biblioteka_muzyczna {
-    enum CategoryEnum {
+    public enum CategoryEnum {
         Acustic,
-        Classical,
         Blues,
+        Classical,
         Jazz,
         Metal,
         Pop,

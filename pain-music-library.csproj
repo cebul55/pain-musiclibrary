@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CategoryControl.Designer.cs">
+      <DependentUpon>CategoryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryControlEditor.cs" />
     <Compile Include="CategoryEnum.cs" />
     <Compile Include="FilterForm.cs">
       <SubType>Form</SubType>
@@ -92,6 +99,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SongForm.resx">
       <DependentUpon>SongForm.cs</DependentUpon>
@@ -108,6 +116,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acustic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\rock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\acustic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\blues.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\classical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\jazz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\metal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\pop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
