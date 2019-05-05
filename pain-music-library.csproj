@@ -92,7 +92,7 @@
       <DependentUpon>MusicLibraryMDIContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -118,9 +118,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\acustic.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\rock.png" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\pop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

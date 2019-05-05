@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace pik_biblioteka_muzyczna {
     public enum CategoryEnum {
-        Acustic,
+        Acustic = 0,
         Blues,
         Classical,
         Jazz,

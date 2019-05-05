@@ -30,9 +30,14 @@ namespace pik_biblioteka_muzyczna {
 
             //bind ComboCategorySongForm with CategoryEnum
             comboCategorySongForm.DataSource = Enum.GetNames(typeof(CategoryEnum));
+            categoryControlSongForm.categoryChangeEvent += categoryControlChanged;
 
             this.song = song;
             this.songs = songs;
+        }
+
+        private void categoryControlChanged(CategoryEnum category) {
+            comboCategorySongForm.Text = category.ToString();
         }
 
         private void SongForm_Load(object sender, EventArgs e) {
@@ -41,9 +46,16 @@ namespace pik_biblioteka_muzyczna {
                 AuthorTextBoxSongForm.Text = song.Author;
                 datePickerSongForm.Value = song.RecordDate;
                 comboCategorySongForm.Text = song.Category;
+                CategoryEnum result;
+                Enum.TryParse(song.Category, false, out result);
+                    if(!Enum.IsDefined(typeof(CategoryEnum), result))
+                        categoryControlSongForm.CurrentCategory = CategoryEnum.Acustic;
+                    else
+                        categoryControlSongForm.CurrentCategory = result;
             }
             else {
                 datePickerSongForm.Value = DateTime.Now.Date;
+                categoryControlSongForm.CurrentCategory = CategoryEnum.Acustic;
             }
 
         }
@@ -111,9 +123,14 @@ namespace pik_biblioteka_muzyczna {
             errorProviderDateSongForm.SetError(datePickerSongForm, "");
         }
 
-
-
-
+        private void ComboCategorySongForm_SelectedIndexChanged(object sender, EventArgs e) {
+            CategoryEnum result;
+            Enum.TryParse(comboCategorySongForm.Text, false, out result);
+            if (!Enum.IsDefined(typeof(CategoryEnum), result))
+                categoryControlSongForm.CurrentCategory = CategoryEnum.Acustic;
+            else
+                categoryControlSongForm.CurrentCategory = result;
+        }
     }
 }
 //todo  - lepsze usuwanie wierszy ( można kilka naraz, usuwanie pojedynczych itemów ( chyba git )

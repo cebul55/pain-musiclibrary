@@ -24,7 +24,13 @@ namespace pik_biblioteka_muzyczna {
         public CategoryEnum CurrentCategory {
             get { return currentCategory;  }
             set {
-                //todo implement setting currentCategory
+                if ((int)value < 0 || (int)value > Enum.GetNames(typeof(CategoryEnum)).Length)
+                    currentCategory = CategoryEnum.Acustic;
+                else {
+                    currentCategory = value;
+                }
+                Invalidate();
+                categoryChangeEvent?.Invoke(currentCategory);
             }
         }
         public CategoryControl() {
@@ -46,13 +52,13 @@ namespace pik_biblioteka_muzyczna {
         }
         private void setUpCategoryImages() {
             CategoryImages = new List<Tuple<CategoryEnum, Bitmap>>();
-            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Acustic, new Bitmap("acustic.png")));
-            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Blues, new Bitmap("blues.png")));
-            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Classical, new Bitmap("classical.png")));
-            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Jazz, new Bitmap("jazz.png")));
-            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Metal, new Bitmap("metal.png")));
-            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Pop, new Bitmap("pop.png")));
-            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Rock, new Bitmap("rock.png")));
+            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Acustic, new Bitmap(Properties.Resources.acustic)));
+            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Blues, new Bitmap(Properties.Resources.blues)));
+            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Classical, new Bitmap(Properties.Resources.classical)));
+            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Jazz, new Bitmap(Properties.Resources.jazz)));
+            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Metal, new Bitmap(Properties.Resources.metal)));
+            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Pop, new Bitmap(Properties.Resources.pop)));
+            CategoryImages.Add(new Tuple<CategoryEnum, Bitmap>(CategoryEnum.Rock, new Bitmap(Properties.Resources.rock)));
         }
 
         protected override void OnPaint(PaintEventArgs e) {
@@ -68,7 +74,7 @@ namespace pik_biblioteka_muzyczna {
             e.Graphics.DrawImage(image, ((int)width - scaleWidth) / 2, ((int)height - scaleHeight) / 2, scaleWidth, scaleHeight);
         }
         protected override void OnClick(EventArgs e) {
-            //todo changing to next element !
+            currentCategory = (CategoryEnum)(((int)currentCategory + 1) % Enum.GetNames(typeof(CategoryEnum)).Length);
             categoryChangeEvent?.Invoke(currentCategory);
             Invalidate();
         }

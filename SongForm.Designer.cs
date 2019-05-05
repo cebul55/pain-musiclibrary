@@ -30,14 +30,17 @@
             this.categoryLabelSongForm = new System.Windows.Forms.Label();
             this.titleLabelSongForm = new System.Windows.Forms.Label();
             this.cancelButtonSongForm = new System.Windows.Forms.Button();
-            this.datePickerSongForm = new System.Windows.Forms.DateTimePicker();
-            this.comboCategorySongForm = new System.Windows.Forms.ComboBox();
             this.AuthorTextBoxSongForm = new System.Windows.Forms.TextBox();
             this.TitleTextBoxSongForm = new System.Windows.Forms.TextBox();
             this.AddButtonStudentForm = new System.Windows.Forms.Button();
+            this.flowLayoutCategorySongForm = new System.Windows.Forms.FlowLayoutPanel();
+            this.comboCategorySongForm = new System.Windows.Forms.ComboBox();
+            this.datePickerSongForm = new System.Windows.Forms.DateTimePicker();
             this.errorProviderSongForm = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderDateSongForm = new System.Windows.Forms.ErrorProvider(this.components);
+            this.categoryControlSongForm = new pik_biblioteka_muzyczna.CategoryControl();
             this.tableLayoutSongForm.SuspendLayout();
+            this.flowLayoutCategorySongForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderSongForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateSongForm)).BeginInit();
             this.SuspendLayout();
@@ -55,11 +58,11 @@
             this.tableLayoutSongForm.Controls.Add(this.categoryLabelSongForm, 0, 3);
             this.tableLayoutSongForm.Controls.Add(this.titleLabelSongForm, 0, 0);
             this.tableLayoutSongForm.Controls.Add(this.cancelButtonSongForm, 1, 4);
-            this.tableLayoutSongForm.Controls.Add(this.datePickerSongForm, 1, 2);
-            this.tableLayoutSongForm.Controls.Add(this.comboCategorySongForm, 1, 3);
             this.tableLayoutSongForm.Controls.Add(this.AuthorTextBoxSongForm, 1, 1);
             this.tableLayoutSongForm.Controls.Add(this.TitleTextBoxSongForm, 1, 0);
             this.tableLayoutSongForm.Controls.Add(this.AddButtonStudentForm, 0, 4);
+            this.tableLayoutSongForm.Controls.Add(this.flowLayoutCategorySongForm, 1, 3);
+            this.tableLayoutSongForm.Controls.Add(this.datePickerSongForm, 1, 2);
             this.tableLayoutSongForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutSongForm.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutSongForm.Name = "tableLayoutSongForm";
@@ -69,6 +72,14 @@
             this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSongForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutSongForm.Size = new System.Drawing.Size(665, 238);
             this.tableLayoutSongForm.TabIndex = 0;
             // 
@@ -144,30 +155,6 @@
             this.cancelButtonSongForm.UseVisualStyleBackColor = false;
             this.cancelButtonSongForm.Click += new System.EventHandler(this.CancelButtonSongForm_Click);
             // 
-            // datePickerSongForm
-            // 
-            this.datePickerSongForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.datePickerSongForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.datePickerSongForm.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePickerSongForm.Location = new System.Drawing.Point(398, 97);
-            this.datePickerSongForm.Name = "datePickerSongForm";
-            this.datePickerSongForm.Size = new System.Drawing.Size(200, 29);
-            this.datePickerSongForm.TabIndex = 6;
-            this.datePickerSongForm.Value = new System.DateTime(2019, 4, 27, 23, 29, 53, 0);
-            this.datePickerSongForm.Validating += new System.ComponentModel.CancelEventHandler(this.datePickerSongForm_Validating);
-            this.datePickerSongForm.Validated += new System.EventHandler(this.datePickerSongForm_Validated);
-            // 
-            // comboCategorySongForm
-            // 
-            this.comboCategorySongForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.comboCategorySongForm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboCategorySongForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboCategorySongForm.FormattingEnabled = true;
-            this.comboCategorySongForm.Location = new System.Drawing.Point(398, 144);
-            this.comboCategorySongForm.Name = "comboCategorySongForm";
-            this.comboCategorySongForm.Size = new System.Drawing.Size(201, 32);
-            this.comboCategorySongForm.TabIndex = 7;
-            // 
             // AuthorTextBoxSongForm
             // 
             this.AuthorTextBoxSongForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -205,6 +192,39 @@
             this.AddButtonStudentForm.UseVisualStyleBackColor = false;
             this.AddButtonStudentForm.Click += new System.EventHandler(this.AddButtonStudentForm_Click);
             // 
+            // flowLayoutCategorySongForm
+            // 
+            this.flowLayoutCategorySongForm.Controls.Add(this.categoryControlSongForm);
+            this.flowLayoutCategorySongForm.Controls.Add(this.comboCategorySongForm);
+            this.flowLayoutCategorySongForm.Location = new System.Drawing.Point(335, 144);
+            this.flowLayoutCategorySongForm.Name = "flowLayoutCategorySongForm";
+            this.flowLayoutCategorySongForm.Size = new System.Drawing.Size(327, 41);
+            this.flowLayoutCategorySongForm.TabIndex = 11;
+            // 
+            // comboCategorySongForm
+            // 
+            this.comboCategorySongForm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboCategorySongForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboCategorySongForm.FormattingEnabled = true;
+            this.comboCategorySongForm.Location = new System.Drawing.Point(41, 3);
+            this.comboCategorySongForm.Name = "comboCategorySongForm";
+            this.comboCategorySongForm.Size = new System.Drawing.Size(200, 32);
+            this.comboCategorySongForm.TabIndex = 7;
+            this.comboCategorySongForm.SelectedIndexChanged += new System.EventHandler(this.ComboCategorySongForm_SelectedIndexChanged);
+            // 
+            // datePickerSongForm
+            // 
+            this.datePickerSongForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.datePickerSongForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.datePickerSongForm.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePickerSongForm.Location = new System.Drawing.Point(398, 97);
+            this.datePickerSongForm.Name = "datePickerSongForm";
+            this.datePickerSongForm.Size = new System.Drawing.Size(200, 29);
+            this.datePickerSongForm.TabIndex = 6;
+            this.datePickerSongForm.Value = new System.DateTime(2019, 4, 27, 23, 29, 53, 0);
+            this.datePickerSongForm.Validating += new System.ComponentModel.CancelEventHandler(this.datePickerSongForm_Validating);
+            this.datePickerSongForm.Validated += new System.EventHandler(this.datePickerSongForm_Validated);
+            // 
             // errorProviderSongForm
             // 
             this.errorProviderSongForm.ContainerControl = this;
@@ -212,6 +232,14 @@
             // errorProviderDateSongForm
             // 
             this.errorProviderDateSongForm.ContainerControl = this;
+            // 
+            // categoryControlSongForm
+            // 
+            this.categoryControlSongForm.CurrentCategory = pik_biblioteka_muzyczna.CategoryEnum.Acustic;
+            this.categoryControlSongForm.Location = new System.Drawing.Point(3, 3);
+            this.categoryControlSongForm.Name = "categoryControlSongForm";
+            this.categoryControlSongForm.Size = new System.Drawing.Size(32, 32);
+            this.categoryControlSongForm.TabIndex = 8;
             // 
             // SongForm
             // 
@@ -225,6 +253,7 @@
             this.Load += new System.EventHandler(this.SongForm_Load);
             this.tableLayoutSongForm.ResumeLayout(false);
             this.tableLayoutSongForm.PerformLayout();
+            this.flowLayoutCategorySongForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderSongForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateSongForm)).EndInit();
             this.ResumeLayout(false);
@@ -247,5 +276,7 @@
         private System.Windows.Forms.Button AddButtonStudentForm;
         private System.Windows.Forms.ErrorProvider errorProviderSongForm;
         private System.Windows.Forms.ErrorProvider errorProviderDateSongForm;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutCategorySongForm;
+        private CategoryControl categoryControlSongForm;
     }
 }
